@@ -42,16 +42,16 @@
                             <h3 class="mb-0">{{post.title}}</h3>
 
                             <p class="card-text mb-auto">{{post.info}}</p>
-                            <a href="{{url_for('home.blog', url = post.url)}}" class="stretched-link">Continuar leendo</a>
-                            <p class="card-text mt-3">
-                                {% if get_user(post.author).photo is none %}
-                                    <img src="{{url_for('static', filename = 'img/user-dark.png')}}" alt="mdo", width="30" class="rounded-circle">
-                                {% else %}
-                                    <img src="{{url_for('static', filename = get_user(post.author).photo)}}" alt="mdo" width = "30">
-                                {% endif %}
-                                <span class="mb-1 text-muted"><b>{{get_user(post.author).username}}</b>--{{
-                                        post.created.strftime('%d de %B %Y')}}</span>
-                            </p>
+
+                            {% if post.photo is none %}
+                                <img src="{{url_for('static', filename = 'img/user-dark.png')}}" width="100" 
+                                class="profile-image rounded-circle mb-2" alt="Foto de perfil">                        
+                            {% else %}
+                                <img src="{{url_for('static', filename = post.photo)}}" width="100" class="profile-image rounded-circle mb-2"
+                                    alt="Foto de perfil">
+                            {% endif %}     
+                            <a href="{{url_for('home.blog', url = post.url)}}" class="stretched-link">Ver Detalles</a>
+                            
                         </div>
                     </div>
                 </div>

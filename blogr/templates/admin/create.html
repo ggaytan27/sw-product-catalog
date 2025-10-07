@@ -4,30 +4,49 @@
 {% block content %}
 
     <section>
-        <div class="container">
+        <div class="container" >
             <div class="header mb-4 mt-4">
-                <h1 class="h3"> {% block title%} Crear Blog {% endblock %}</h1>
+                <h1 class="h3"> {% block title%} Agregar Articulo {% endblock %}</h1>
             </div>
             <div class="body">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="url" class="form-label">URL del Articulo</label>
-                        <input type="text" class="form-control" id="url" name="url" required placeholder="ejemplo-title">
-                    </div>
-                    <div class="mb-3">
-                        <label for="titleInput" class="form-label">Título</label>
-                        <input type="text" class="form-control" id="titleInput" name="title" required placeholder="Título del blog">
+                        <label for="titleInput" class="form-label">Articulo</label>
+                        <input type="text" class="form-control" id="titleInput" name="title" required placeholder="Nombre del Articulo">
                     </div>
                     <div class="mb-3">
                         <label for="info"  class="form-label">Descripción</label>
-                        <textarea class="form-control" id="info" rows="3" name="info" placeholder="Breve descripción del blog"></textarea>
+                        <textarea class="form-control" id="info" rows="3" name="info" placeholder="Breve descripción del articulo"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="contentInput" class="form-label">Contenido</label>
-                        <br>
-                        {{ ckeditor.create() }}
-
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="precio" required>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="cant" class="form-label">Cantidad</label>
+                        <select class="form-select" id="cant" name="cant" required>
+                            {% for i in range(0, 20) %}
+                                <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="photo" class="form-label">Foto</label>
+                        <input type="file" id="photo" name="photo" class="form-control">
+                    </div>        
+                    
+                    <div class="mb-3">
+                        <label for="photo2" class="form-label">Foto 2</label>
+                        <input type="file" id="photo2" name="photo2" class="form-control">
+                    </div>      
+                    
+                    <div class="mb-3">
+                        <label for="photo3" class="form-label">Foto 3</label>
+                        <input type="file" id="photo3" name="photo3" class="form-control">
+                    </div>                    
+
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
             </div>

@@ -49,3 +49,9 @@ h6 {
     color: #727272;
 }
 
+.carousel-item img {
+  max-height: 400px;
+  width: auto;
+  margin: 0 auto; /* centra la imagen si no llena el ancho */
+  object-fit: contain; /* ajusta completa dentro del contenedor */
+}

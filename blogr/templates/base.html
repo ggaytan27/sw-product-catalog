@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlogPosts - {% block title %} {% endblock %}</title>
+    <title>Venta de Articulos! - {% block title %} {% endblock %}</title>
 
     <!-- Estilos de bootstrap y de app -->
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css')}}">
@@ -46,13 +46,13 @@
                         </li>
                         <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{url_for('post.create')}}">
                                 <span class="d-inline-block bg-success rounded-circle p-1"></span>
-                                Crear Blog
+                                Agregar Articulo
                             </a>
                         </li>
                 
                         <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{url_for('post.posts')}}">
                                 <span class="d-inline-block bg-primary rounded-circle p-1"></span>
-                                Mis Blogs
+                                Mis Articulos
                             </a>
                         </li>
                         <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{url_for('auth.profile', id = g.user.id)}}">

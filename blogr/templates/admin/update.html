@@ -5,23 +5,54 @@
     <section>
         <div class="container">
             <div class="header mb-4 mt-4">
-                <h1 class="h3">Crear Blog</h1>
+                <h1 class="h3">Actualizar Articulo</h1>
             </div>
             <div class="body">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="title" class="form-label">Título</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{post.title}}" placeholder="Título del blog">
+                        <label for="title" class="form-label">Articulo</label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{post.title}}" placeholder="Nombre Articulo">
                     </div>
                     <div class="mb-3">
                         <label for="info" class="form-label">Descripción</label>
                         <textarea class="form-control" name="info" id="descInput" rows="3"
-                            placeholder="Breve descripción del blog">{{post.info}}</textarea>
+                            placeholder="Descripción del articulo">{{post.info}}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="ckeditor" class="form-label">Contenido</label>
-                            {{ ckeditor.create(value=post.content) }}
+                        <label for="cant" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" id="cant" name="cant" value="{{post.cant}}" placeholder="Cantidad">                        
                     </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="precio" value="{{post.precio}}" placeholder="Precio">                        
+                    </div>                    
+
+                    <!--Seccion de fotos-->
+                    <div class="mb-3">
+                        <label for="photo1">Foto 1</label> <br>
+                        {% if post.photo is none %}
+                            <img src="{{url_for('static', filename = 'img/user-dark.png')}}" width="100" 
+                            class="profile-image rounded-circle mb-2" alt="Foto de perfil">                        
+                        {% else %}
+                            <img src="{{url_for('static', filename = post.photo)}}" width="100" class="profile-image rounded-circle mb-2"
+                                alt="Foto de perfil">
+                        {% endif %}   
+                        <input type="file" id="photo" name="photo" class="form-control" value="{{post.photo1}}">             
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="photo1">Foto 2</label> <br>
+                        {% if post.photo is none %}
+                            <img src="{{url_for('static', filename = 'img/user-dark.png')}}" width="100" 
+                            class="profile-image rounded-circle mb-2" alt="Foto de perfil">                        
+                        {% else %}
+                            <img src="{{url_for('static', filename = post.photo2)}}" width="100" class="profile-image rounded-circle mb-2"
+                                alt="Foto de perfil">
+                        {% endif %}        
+                        <input type="file" id="photo" name="photo2" class="form-control" value="{{post.photo2}}">        
+                    </div>                
+
+
                     <button type="submit" class="btn btn-primary">Actualizar</button>
                 </form>
             </div>

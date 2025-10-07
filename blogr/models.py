@@ -26,16 +26,22 @@ class Post(db.Model):
     url = db.Column(db.String(100), unique = True, nullable = False)
     title = db.Column(db.String(100), nullable = False)
     info = db.Column(db.Text)
-    content = db.Column(db.Text)
+    cant = db.Column(db.Integer)
+    precio = db.Column(db.Float)
+    photo = db.Column(db.String(200))
+    photo2 = db.Column(db.String(200))
+    photo3 = db.Column(db.String(200))
     created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 
 
-    def __init__(self, author, url, title, info, content) -> None:
+    def __init__(self, author, url, title, info, cant, precio) -> None:
         self.author = author
         self.url = url
         self.title = title
         self.info = info
-        self.content = content
+        self.cant = cant
+        self.precio = precio
+        #self.photo = photo
 
     def __repr__(self):
         return f"User: {self.author}'"

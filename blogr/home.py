@@ -27,6 +27,13 @@ def index():
 @bp.route('/blog/<url>')
 def blog(url):
     post = Post.query.filter_by(url = url).first()
-    return render_template('blog.html', post = post, get_user = get_user)
+        #lista de imagenes para el carrusel
+    carrusel_imgs = [
+        'img/image1.jpg',
+        'img/image2.jpg',
+        'img/image3.jpg',
+    ]
+
+    return render_template('blog.html', post = post, get_user = get_user, carrusel_imgs = carrusel_imgs)
 
 

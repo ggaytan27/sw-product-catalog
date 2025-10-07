@@ -1,29 +1,75 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-    <!-- Página de blog -->
+<!-- Página de blog -->
+<article class="container blog-post">
+    <h1 class="blog-post-title mb-1">{% block title %}{{ post.title }} {% endblock %}</h1>
 
-    <article class="container blog-post">
-        <h1 class="blog-post-title mb-1">{% block title %} {{ post.title }} {%endblock%}</h1>
-        <p class="card-text mt-3">
-            {% if get_user(post.author).photo is none %}
-                <img src="{{ url_for('static', filename='img/user-dark.png') }}" alt="mdo" width="30" class="rounded-circle">
-            {% else %}
-                <img src="{{ url_for('static', filename=get_user(post.author).photo) }}" alt="mdo" width="30">
-            {% endif%}
+    <div class="mb-3 articulo-item">
+        <p><span class="etiqueta">Articulo:</span> {{ post.info }}</p>
+        <p><span class="etiqueta">Cantidad:</span> {{ post.cant }}</p>
+        <p><span class="etiqueta">Precio: $</span>{{ post.precio }}</p>
+    </div>
 
-            <span class="mb-1 text-muted"> <b>{{ get_user(post.author).username}}</b> --{{
-                post.created.strftime('%d de %B %Y')}}</span>
-        </p>
+    <!-- Carrusel de artículos -->
+    <div id="articulosCarousel" class="carousel slide mt-2" data-bs-ride="carousel">
+        <div class="carousel-inner">
 
-        <p class="mb-5 mt-5">{{post.info}}</p>
-        <br>
+            <!-- Primera foto -->
+            <div class="carousel-item active">
+                {% if post.photo %}
+                <img src="{{ url_for('static', filename=post.photo) }}" class="d-block w-100 rounded" alt="Foto de {{ post.title }}">
+                {% else %}
+                <img src="{{ url_for('static', filename='img/user-dark.png') }}" class="d-block w-100 rounded" alt="Sin foto">
+                {% endif %}
+            </div>
 
-        <div class="mb-5 mt-5">
-            {{post['content'] | safe}}
+            <!-- Segunda foto -->
+            {% if post.photo2 %}
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename=post.photo2) }}" class="d-block w-100 rounded" alt="Foto adicional de {{ post.title }}">
+            </div>
+            {% endif %}
+
+            <!-- Tercera foto -->
+            {% if post.photo3 %}
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename=post.photo3) }}" class="d-block w-100 rounded" alt="Foto adicional de {{ post.title }}">
+            </div>
+            {% endif %}
+
         </div>
 
-    </article>
+        <!-- Controles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#articulosCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#articulosCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+</article>
+
+<!-- Estilos personalizados -->
+<style>
+.articulo-item p {
+    margin: 2px 0;       /* Reduce el espacio vertical */
+    padding: 0;
+    font-size: 1rem;     /* Ajusta tamaño si quieres */
+}
+
+.etiqueta {
+    color: black;        /* Etiquetas en negro */
+    font-weight: bold;   /* Opcional, para resaltar */
+}
+
+/* Si quieres todo en línea */
+.articulo-item p {
+    display: inline-block;
+    margin-right: 15px;  /* Espacio entre cada elemento */
+}
+</style>
 
 {% endblock %}
