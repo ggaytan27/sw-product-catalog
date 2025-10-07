@@ -3,7 +3,7 @@ POSTGRESQL = ""
 
 
 class Config:
-    DEBUG = True
+    DEBUG = False
     SECRET_KEY = 'dev'
     SQLALCHEMY_DATABASE_URI = SQLITE
 
